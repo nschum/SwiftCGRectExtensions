@@ -190,6 +190,19 @@ extension CGRect {
         return with(x: x + by.width, y: y + by.height)
     }
 
+    public mutating func offset(dx: CGFloat, _ dy: CGFloat) {
+        offset(dx: dx, dy: dy)
+    }
+    public mutating func offset(dx: CGFloat = 0) {
+        x += dx
+    }
+    public mutating func offset(dy: CGFloat = 0) {
+        y += dy
+    }
+    public mutating func offset(by: CGSize) {
+        offset(dx: by.width, dy: by.height)
+    }
+
     // MARK: inset
 
     public func rectByInsetting(by: CGFloat) -> CGRect {
@@ -228,6 +241,38 @@ extension CGRect {
         return rectByInsetting(bottom: bottomRight.height, right: bottomRight.width)
     }
 
+    public mutating func inset(by: CGFloat) {
+        inset(dx: by, dy: by)
+    }
+
+    public mutating func inset(# dx: CGFloat) {
+        inset(dx: dx, dy: 0)
+    }
+    public mutating func inset(# dy: CGFloat) {
+        inset(dx: 0, dy: dy)
+    }
+
+    public mutating func inset(minX: CGFloat = 0, minY: CGFloat = 0, maxX: CGFloat = 0, maxY: CGFloat = 0) {
+        self = rectByInsetting(minX: minX, minY: minY, maxX: maxX, maxY: maxY)
+    }
+
+    public mutating func inset(top: CGFloat = 0, left: CGFloat = 0, bottom: CGFloat = 0, right: CGFloat = 0) {
+        self = rectByInsetting(top: top, left: left, bottom: bottom, right: right)
+    }
+
+    public mutating func inset(# topLeft: CGSize) {
+        self = rectByInsetting(topLeft: topLeft)
+    }
+    public mutating func inset(# topRight: CGSize) {
+        self = rectByInsetting(topRight: topRight)
+    }
+    public mutating func inset(# bottomLeft: CGSize) {
+        self = rectByInsetting(bottomLeft: bottomLeft)
+    }
+    public mutating func inset(# bottomRight: CGSize) {
+        self = rectByInsetting(bottomRight: bottomRight)
+    }
+
     // MARK: extending
 
     public func rectByExtending(#dx: CGFloat, dy: CGFloat = 0) -> CGRect {
@@ -259,6 +304,37 @@ extension CGRect {
     }
     public func rectByExtending(# bottomRight: CGSize) -> CGRect {
         return rectByInsetting(bottom: -bottomRight.height, right: -bottomRight.width)
+    }
+
+    public mutating func extend(#dx: CGFloat, dy: CGFloat = 0) {
+        self = rectByInsetting(dx: -dx, dy: -dy)
+    }
+    public mutating func extend(# dy: CGFloat) {
+        self = rectByInsetting(dy: -dy)
+    }
+
+    public mutating func extend(by: CGFloat) {
+        self = rectByInsetting(dx: -by, dy: -by)
+    }
+
+    public mutating func extend(minX: CGFloat = 0, minY: CGFloat = 0, maxX: CGFloat = 0, maxY: CGFloat = 0) {
+        self = rectByInsetting(minX: -minX, minY: -minY, maxX: -maxX, maxY: -maxY)
+    }
+    public mutating func extend(top: CGFloat = 0, left: CGFloat = 0, bottom: CGFloat = 0, right: CGFloat = 0) {
+        self = rectByInsetting(top: -top, left: -left, bottom: -bottom, right: -right)
+    }
+
+    public mutating func extend(# topLeft: CGSize) {
+        self = rectByExtending(top: topLeft.height, left: topLeft.width)
+    }
+    public mutating func extend(# topRight: CGSize) {
+        self = rectByInsetting(top: -topRight.height, right: -topRight.width)
+    }
+    public mutating func extend(# bottomLeft: CGSize) {
+        self = rectByInsetting(bottom: -bottomLeft.height, left: -bottomLeft.width)
+    }
+    public mutating func extend(# bottomRight: CGSize) {
+        self = rectByInsetting(bottom: -bottomRight.height, right: -bottomRight.width)
     }
 
     // MARK: sizes
@@ -307,6 +383,18 @@ extension CGRect {
         default:
             preconditionFailure("Cannot align to this combination of edges")
         }
+    }
+
+    public mutating func setSizeCentered(size: CGSize) {
+        self = rectByCentering(size)
+    }
+
+    public mutating func setSizeCentered(size: CGSize, alignTo edge: CGRectEdge) {
+        self = rectByCentering(size, alignTo: edge)
+    }
+
+    public mutating func setSizeAligned(size: CGSize, corner e1: CGRectEdge, _ e2: CGRectEdge) {
+        self = rectByAligning(size, corner: e1, e2)
     }
 }
 

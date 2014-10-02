@@ -23,3 +23,28 @@ class OffsetTests: XCTestCase {
             CGRect(x: 4, y: 6, width: 10, height: 20))
     }
 }
+
+class MutatingOffsetTests: XCTestCase {
+
+    var rect = CGRect(x: 1, y: 2, width: 10, height: 20)
+
+    func testOffsettingDxDy() {
+        rect.offset(3, 4)
+        XCTAssertEqual(rect, CGRect(x: 4, y: 6, width: 10, height: 20))
+    }
+
+    func testOffsettingDx() {
+        rect.offset(dx: 3)
+        XCTAssertEqual(rect, CGRect(x: 4, y: 2, width: 10, height: 20))
+    }
+
+    func testOffsettingDy() {
+        rect.offset(dy: 4)
+        XCTAssertEqual(rect, CGRect(x: 1, y: 6, width: 10, height: 20))
+    }
+
+    func testOffsettingBySize() {
+        rect.offset(CGSize(3, 4))
+        XCTAssertEqual(rect, CGRect(x: 4, y: 6, width: 10, height: 20))
+    }
+}

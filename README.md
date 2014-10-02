@@ -52,3 +52,25 @@ let corner = rect.rectByAligning(quarterSize, corner: .MinXEdge, .MinYEdge) // a
 let halfWidthSize = rect.size * (0.5, 1) // scaling sizes
 let centeredRect = rect.rectByCentering(halfWidthSize) // centering sizes
 ```
+
+Mutating functions are also available. These are especially convenient since Swift allows modifying a `struct` property directly.
+
+```swift
+import Cocoa
+import CGRectExtensions
+
+let view = NSView()
+view.frame.size = CGSize(width: 100, height: 200)
+
+view.frame.bottomLeft = CGPoint(x: 1, y: 2)
+
+view.frame.offset(25, 25)
+
+view.frame.inset(top: 66, left: 10, right: 10)
+
+view.frame.setSizeCentered(CGSize(50, 50))
+
+view.frame.setSizeCentered(CGSize(50, 50), alignTo: .MinXEdge)
+
+view.frame.setSizeAligned(CGSize(50, 50), corner: .MinXEdge, .MinYEdge)
+```

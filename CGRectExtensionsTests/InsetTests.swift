@@ -190,3 +190,186 @@ class InsetPlatformTests: InsetTests {
     }
 }
 #endif
+
+class MutatingInsetTests: XCTestCase {
+
+    var rect = CGRect(x: 1, y: 2, width: 20, height: 40)
+
+    func testInsetting() {
+        rect.inset(5)
+        XCTAssertEqual(rect, CGRect(x: 6, y: 7, width: 10, height: 30))
+    }
+
+    func testInsettingDx() {
+        rect.inset(dx: 5)
+        XCTAssertEqual(rect, CGRect(x: 6, y: 2, width: 10, height: 40))
+    }
+
+    func testInsettingDy() {
+        rect.inset(dy: 5)
+        XCTAssertEqual(rect, CGRect(x: 1, y: 7, width: 20, height: 30))
+    }
+
+    func testInsettingMinXMinYMaxXMaxY() {
+        rect.inset(minX: 5, minY: 10, maxX: 3, maxY: 7)
+        XCTAssertEqual(rect, CGRect(x: 6, y: 12, width: 12, height: 23))
+    }
+
+    func testInsettingMinX() {
+        rect.inset(minX: 5)
+        XCTAssertEqual(rect, CGRect(x: 6, y: 2, width: 15, height: 40))
+    }
+
+    func testInsettingMaxX() {
+        rect.inset(maxX: 5)
+        XCTAssertEqual(rect, CGRect(x: 1, y: 2, width: 15, height: 40))
+    }
+
+    func testInsettingMinXMinY() {
+        rect.inset(minX: 5, minY: 10)
+        XCTAssertEqual(rect, CGRect(x: 6, y: 12, width: 15, height: 30))
+    }
+
+    func testInsettingMinY() {
+        rect.inset(minY: 10)
+        XCTAssertEqual(rect, CGRect(x: 1, y: 12, width: 20, height: 30))
+    }
+
+    func testInsettingMaxXMinY() {
+        rect.inset(maxX: 5, minY: 10)
+        XCTAssertEqual(rect, CGRect(x: 1, y: 12, width: 15, height: 30))
+    }
+
+    func testInsettingMinXMaxY() {
+        rect.inset(minX: 5, maxY: 10)
+        XCTAssertEqual(rect, CGRect(x: 6, y: 2, width: 15, height: 30))
+    }
+
+    func testInsettingMaxY() {
+        rect.inset(maxY: 10)
+        XCTAssertEqual(rect, CGRect(x: 1, y: 2, width: 20, height: 30))
+    }
+
+    func testInsettingMaxXMaxY() {
+        rect.inset(maxX: 5, maxY: 10)
+        XCTAssertEqual(rect, CGRect(x: 1, y: 2, width: 15, height: 30))
+    }
+
+    func testInsettingLeft() {
+        rect.inset(left: 5)
+        XCTAssertEqual(rect, CGRect(x: 6, y: 2, width: 15, height: 40))
+    }
+
+    func testInsettingRight() {
+        rect.inset(right: 5)
+        XCTAssertEqual(rect, CGRect(x: 1, y: 2, width: 15, height: 40))
+    }
+}
+
+#if os(OSX)
+class MutatingInsetPlatformTests: MutatingInsetTests {
+
+    func testInsettingTopLeft() {
+        rect.inset(top: 10, left: 5)
+        XCTAssertEqual(rect, CGRect(x: 6, y: 2, width: 15, height: 30))
+    }
+
+    func testInsettingTop() {
+        rect.inset(top: 10)
+        XCTAssertEqual(rect, CGRect(x: 1, y: 2, width: 20, height: 30))
+    }
+
+    func testInsettingTopRight() {
+        rect.inset(top: 10, right: 5)
+        XCTAssertEqual(rect, CGRect(x: 1, y: 2, width: 15, height: 30))
+    }
+
+    func testInsettingBottomLeft() {
+        rect.inset(bottom: 10, left: 5)
+        XCTAssertEqual(rect, CGRect(x: 6, y: 12, width: 15, height: 30))
+    }
+
+    func testInsettingBottom() {
+        rect.inset(bottom: 10)
+        XCTAssertEqual(rect, CGRect(x: 1, y: 12, width: 20, height: 30))
+    }
+
+    func testInsettingBottomRight() {
+        rect.inset(bottom: 10, right: 5)
+        XCTAssertEqual(rect, CGRect(x: 1, y: 12, width: 15, height: 30))
+    }
+
+    func testInsettingTopLeftSize() {
+        rect.inset(topLeft: CGSize(width: 5, height: 10))
+        XCTAssertEqual(rect, CGRect(x: 6, y: 2, width: 15, height: 30))
+    }
+
+    func testInsettingTopRightSize() {
+        rect.inset(topRight: CGSize(width: 5, height: 10))
+        XCTAssertEqual(rect, CGRect(x: 1, y: 2, width: 15, height: 30))
+    }
+
+    func testInsettingBottomLeftSize() {
+        rect.inset(bottomLeft: CGSize(width: 5, height: 10))
+        XCTAssertEqual(rect, CGRect(x: 6, y: 12, width: 15, height: 30))
+    }
+
+    func testInsettingBottomRightSize() {
+        rect.inset(bottomRight: CGSize(width: 5, height: 10))
+        XCTAssertEqual(rect, CGRect(x: 1, y: 12, width: 15, height: 30))
+    }
+}
+#else
+class MutatingInsetPlatformTests: MutatingInsetTests {
+
+    func testInsettingTopLeft() {
+        rect.inset(top: 10, left: 5)
+        XCTAssertEqual(rect, CGRect(x: 6, y: 12, width: 15, height: 30))
+    }
+
+    func testInsettingTop() {
+        rect.inset(top: 10)
+        XCTAssertEqual(rect, CGRect(x: 1, y: 12, width: 20, height: 30))
+    }
+
+    func testInsettingTopRight() {
+        rect.inset(top: 10, right: 5)
+        XCTAssertEqual(rect, CGRect(x: 1, y: 12, width: 15, height: 30))
+    }
+
+    func testInsettingBottomLeft() {
+        rect.inset(bottom: 10, left: 5)
+        XCTAssertEqual(rect, CGRect(x: 6, y: 2, width: 15, height: 30))
+    }
+
+    func testInsettingBottom() {
+        rect.inset(bottom: 10)
+        XCTAssertEqual(rect, CGRect(x: 1, y: 2, width: 20, height: 30))
+    }
+
+    func testInsettingBottomRight() {
+        rect.inset(bottom: 10, right: 5)
+        XCTAssertEqual(rect, CGRect(x: 1, y: 2, width: 15, height: 30))
+    }
+
+    func testInsettingTopLeftSize() {
+        rect.inset(topLeft: CGSize(width: 5, height: 10))
+        XCTAssertEqual(rect, CGRect(x: 6, y: 12, width: 15, height: 30))
+    }
+
+    func testInsettingTopRightSize() {
+        rect.inset(topRight: CGSize(width: 5, height: 10))
+        XCTAssertEqual(rect, CGRect(x: 1, y: 12, width: 15, height: 30))
+    }
+
+    func testInsettingBottomLeftSize() {
+        rect.inset(bottomLeft: CGSize(width: 5, height: 10))
+        XCTAssertEqual(rect, CGRect(x: 6, y: 2, width: 15, height: 30))
+    }
+    
+    func testInsettingBottomRightSize() {
+        rect.inset(bottomRight: CGSize(width: 5, height: 10))
+        XCTAssertEqual(rect, CGRect(x: 1, y: 2, width: 15, height: 30))
+    }
+}
+#endif

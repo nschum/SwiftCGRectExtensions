@@ -198,3 +198,186 @@ class ExtendPlatformTests: ExtendTests {
     }
 }
 #endif
+
+class MutatingExtendTests: XCTestCase {
+
+    var rect = CGRect(x: 1, y: 2, width: 20, height: 40)
+
+    func testExtendting() {
+        rect.extend(-5)
+        XCTAssertEqual(rect, CGRect(x: 6, y: 7, width: 10, height: 30))
+    }
+
+    func testExtendtingDx() {
+        rect.extend(dx: -5)
+        XCTAssertEqual(rect, CGRect(x: 6, y: 2, width: 10, height: 40))
+    }
+
+    func testExtendtingDy() {
+        rect.extend(dy: -5)
+        XCTAssertEqual(rect, CGRect(x: 1, y: 7, width: 20, height: 30))
+    }
+
+    func testExtendtingMinXMinYMaxXMaxY() {
+        rect.extend(minX: -5, minY: -10, maxX: -3, maxY: -7)
+        XCTAssertEqual(rect, CGRect(x: 6, y: 12, width: 12, height: 23))
+    }
+
+    func testExtendtingMinX() {
+        rect.extend(minX: -5)
+        XCTAssertEqual(rect, CGRect(x: 6, y: 2, width: 15, height: 40))
+    }
+
+    func testExtendtingMaxX() {
+        rect.extend(maxX: -5)
+        XCTAssertEqual(rect, CGRect(x: 1, y: 2, width: 15, height: 40))
+    }
+
+    func testExtendtingMinXMinY() {
+        rect.extend(minX: -5, minY: -10)
+        XCTAssertEqual(rect, CGRect(x: 6, y: 12, width: 15, height: 30))
+    }
+
+    func testExtendtingMinY() {
+        rect.extend(minY: -10)
+        XCTAssertEqual(rect, CGRect(x: 1, y: 12, width: 20, height: 30))
+    }
+
+    func testExtendtingMaxXMinY() {
+        rect.extend(maxX: -5, minY: -10)
+        XCTAssertEqual(rect, CGRect(x: 1, y: 12, width: 15, height: 30))
+    }
+
+    func testExtendtingMinXMaxY() {
+        rect.extend(minX: -5, maxY: -10)
+        XCTAssertEqual(rect, CGRect(x: 6, y: 2, width: 15, height: 30))
+    }
+
+    func testExtendtingMaxY() {
+        rect.extend(maxY: -10)
+        XCTAssertEqual(rect, CGRect(x: 1, y: 2, width: 20, height: 30))
+    }
+
+    func testExtendtingMaxXMaxY() {
+        rect.extend(maxX: -5, maxY: -10)
+        XCTAssertEqual(rect, CGRect(x: 1, y: 2, width: 15, height: 30))
+    }
+
+    func testExtendtingLeft() {
+        rect.extend(left: -5)
+        XCTAssertEqual(rect, CGRect(x: 6, y: 2, width: 15, height: 40))
+    }
+
+    func testExtendtingRight() {
+        rect.extend(right: -5)
+        XCTAssertEqual(rect, CGRect(x: 1, y: 2, width: 15, height: 40))
+    }
+}
+
+#if os(OSX)
+class MutatingExtendPlatformTests: MutatingExtendTests {
+
+    func testExtendtingTopLeft() {
+       rect.extend(top: -10, left: -5)
+        XCTAssertEqual(rect, CGRect(x: 6, y: 2, width: 15, height: 30))
+    }
+
+    func testExtendtingTop() {
+        rect.extend(top: -10)
+        XCTAssertEqual(rect, CGRect(x: 1, y: 2, width: 20, height: 30))
+    }
+
+    func testExtendtingTopRight() {
+        rect.extend(top: -10, right: -5)
+        XCTAssertEqual(rect, CGRect(x: 1, y: 2, width: 15, height: 30))
+    }
+
+    func testExtendtingBottomLeft() {
+        rect.extend(bottom: -10, left: -5)
+        XCTAssertEqual(rect, CGRect(x: 6, y: 12, width: 15, height: 30))
+    }
+
+    func testExtendtingBottom() {
+        rect.extend(bottom: -10)
+        XCTAssertEqual(rect, CGRect(x: 1, y: 12, width: 20, height: 30))
+    }
+
+    func testExtendtingBottomRight() {
+        rect.extend(bottom: -10, right: -5)
+        XCTAssertEqual(rect, CGRect(x: 1, y: 12, width: 15, height: 30))
+    }
+
+    func testExtendtingTopLeftSize() {
+        rect.extend(topLeft: CGSize(width: -5, height: -10))
+        XCTAssertEqual(rect, CGRect(x: 6, y: 2, width: 15, height: 30))
+    }
+
+    func testExtendtingTopRightSize() {
+        rect.extend(topRight: CGSize(width: -5, height: -10))
+        XCTAssertEqual(rect, CGRect(x: 1, y: 2, width: 15, height: 30))
+    }
+
+    func testExtendtingBottomLeftSize() {
+        rect.extend(bottomLeft: CGSize(width: -5, height: -10))
+        XCTAssertEqual(rect, CGRect(x: 6, y: 12, width: 15, height: 30))
+    }
+
+    func testExtendtingBottomRightSize() {
+        rect.extend(bottomRight: CGSize(width: -5, height: -10))
+        XCTAssertEqual(rect, CGRect(x: 1, y: 12, width: 15, height: 30))
+    }
+}
+#else
+class MutatingExtendPlatformTests: MutatingExtendTests {
+
+    func testExtendtingTopLeft() {
+        rect.extend(top: -10, left: -5)
+        XCTAssertEqual(rect, CGRect(x: 6, y: 12, width: 15, height: 30))
+    }
+
+    func testExtendtingTop() {
+        rect.extend(top: -10)
+        XCTAssertEqual(rect, CGRect(x: 1, y: 12, width: 20, height: 30))
+    }
+
+    func testExtendtingTopRight() {
+        rect.extend(top: -10, right: -5)
+        XCTAssertEqual(rect, CGRect(x: 1, y: 12, width: 15, height: 30))
+    }
+
+    func testExtendtingBottomLeft() {
+        rect.extend(bottom: -10, left: -5)
+        XCTAssertEqual(rect, CGRect(x: 6, y: 2, width: 15, height: 30))
+    }
+
+    func testExtendtingBottom() {
+        rect.extend(bottom: -10)
+        XCTAssertEqual(rect, CGRect(x: 1, y: 2, width: 20, height: 30))
+    }
+
+    func testExtendtingBottomRight() {
+        rect.extend(bottom: -10, right: -5)
+        XCTAssertEqual(rect, CGRect(x: 1, y: 2, width: 15, height: 30))
+    }
+
+    func testExtendtingTopLeftSize() {
+        rect.extend(topLeft: CGSize(width: -5, height: -10))
+        XCTAssertEqual(rect, CGRect(x: 6, y: 12, width: 15, height: 30))
+    }
+
+    func testExtendtingTopRightSize() {
+        rect.extend(topRight: CGSize(width: -5, height: -10))
+        XCTAssertEqual(rect, CGRect(x: 1, y: 12, width: 15, height: 30))
+    }
+
+    func testExtendtingBottomLeftSize() {
+        rect.extend(bottomLeft: CGSize(width: -5, height: -10))
+        XCTAssertEqual(rect, CGRect(x: 6, y: 2, width: 15, height: 30))
+    }
+    
+    func testExtendtingBottomRightSize() {
+        rect.extend(bottomRight: CGSize(width: -5, height: -10))
+        XCTAssertEqual(rect, CGRect(x: 1, y: 2, width: 15, height: 30))
+    }
+}
+#endif
