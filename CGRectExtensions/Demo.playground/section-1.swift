@@ -24,6 +24,8 @@ let corner = rect.rectByAligning(quarterSize, corner: .MinXEdge, .MinYEdge) // a
 let halfWidthSize = rect.size * (0.5, 1) // scaling sizes
 let centeredRect = rect.rectByCentering(halfWidthSize) // centering sizes
 
+let scaledRect = rect * CGAffineTransformMakeScale(2.0, 3.0)
+
 // mutating functions
 
 import Cocoa
@@ -42,3 +44,5 @@ view.frame.setSizeCentered(CGSize(50, 50))
 view.frame.setSizeCentered(CGSize(50, 50), alignTo: .MinXEdge)
 
 view.frame.setSizeAligned(CGSize(50, 50), corner: .MinXEdge, .MinYEdge)
+
+view.frame *= CGAffineTransformMakeScale(2.0, 3.0)
