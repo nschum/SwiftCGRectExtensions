@@ -222,6 +222,16 @@ class TransformOperatorTests: XCTestCase {
 
     let transform = CGAffineTransformMakeScale(2, 3)
 
+    func testEquatable() {
+        let otherTransform = CGAffineTransformMakeScale(2, 3)
+        XCTAssertTrue(transform == otherTransform)
+    }
+
+    func testNotEquatable() {
+        let otherTransform = CGAffineTransformMakeScale(3, 2)
+        XCTAssertFalse(transform == otherTransform)
+    }
+
     func testMultiplyPoint() {
         let point = CGPoint(x: 10, y: 20)
         XCTAssertEqual(point * transform, CGPoint(x: 20, y: 60))
@@ -253,5 +263,20 @@ class TransformOperatorTests: XCTestCase {
         var rect = CGRect(x: 10, y: 20, width: 30, height: 40)
         rect *= transform
         XCTAssertEqual(rect, CGRect(x: 20, y: 60, width: 60, height: 120))
+    }
+
+    func testMultiplyTransform() {
+        let otherTransform = CGAffineTransformMakeTranslation(10, 20)
+        XCTAssertEqual(
+            otherTransform * transform,
+            CGAffineTransformConcat(otherTransform, transform))
+    }
+
+    func testMultiplyTransformAssignment() {
+        var otherTransform = CGAffineTransformMakeTranslation(10, 20)
+        otherTransform *= transform
+        XCTAssertEqual(
+            otherTransform,
+            CGAffineTransformConcat(CGAffineTransformMakeTranslation(10, 20), transform))
     }
 }

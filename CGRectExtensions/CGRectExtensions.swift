@@ -398,6 +398,21 @@ extension CGRect {
     }
 }
 
+// MARK: transform
+
+extension CGAffineTransform: Equatable {
+}
+
+public func ==(t1: CGAffineTransform, t2: CGAffineTransform) -> Bool {
+    return CGAffineTransformEqualToTransform(t1, t2)
+}
+
+extension CGAffineTransform: DebugPrintable {
+    public var debugDescription: String {
+        return "(\(a),\(b),\(c),\(d),\(tx),\(ty))"
+    }
+}
+
 // MARK: operators
 
 public func +(p1: CGPoint, p2: CGPoint) -> CGPoint {
@@ -576,3 +591,9 @@ public func *=(inout rect: CGRect, transform: CGAffineTransform) {
     rect = CGRectApplyAffineTransform(rect, transform)
 }
 
+public func *(t1: CGAffineTransform, t2: CGAffineTransform) -> CGAffineTransform {
+    return CGAffineTransformConcat(t1, t2)
+}
+public func *=(inout t1: CGAffineTransform, t2: CGAffineTransform) {
+    t1 = CGAffineTransformConcat(t1, t2)
+}
