@@ -1,6 +1,55 @@
 import CGRectExtensions
 import XCTest
 
+class PinningTests: XCTestCase {
+
+    let srcRect = CGRect(x: 0, y: 0, width: 100, height: 200)
+    
+    let controlPoints: [CGRectControlPoint] = [
+      .MinXMinY,
+      .CenterXMinY,
+      .MaxXMinY,
+      .MaxXCenterY,
+      .MaxXMaxY,
+      .CenterXMaxY,
+      .MinXMaxY,
+      .MinXCenterY,
+      .CenterXCenterY,
+    ]
+    
+    func testPinningDistinctControlPoints() {
+        for srcCPoint in controlPoints {
+            for dstCPoint in controlPoints {
+                var dstRect = srcRect.rectByPinning(CGSize(width: 5, height: 8), controlPoint: dstCPoint, toTargetControlPoint: srcCPoint)
+                XCTAssertEqual(
+                    dstRect.pointOfControlPoint(dstCPoint),
+                    srcRect.pointOfControlPoint(srcCPoint)
+                )
+            }
+        }
+    }
+    
+    func testControlPointCGPoint() {
+        let expectedPoints: [(CGRectControlPoint, CGPoint)] = [
+          (.MinXMinY, CGPoint(0, 0)),
+          (.CenterXMinY, CGPoint(50, 0)),
+          (.MaxXMinY, CGPoint(100, 0)),
+          (.MaxXCenterY, CGPoint(100, 100)),
+          (.MaxXMaxY, CGPoint(100, 200)),
+          (.CenterXMaxY, CGPoint(50, 200)),
+          (.MinXMaxY, CGPoint(0, 200)),
+          (.MinXCenterY, CGPoint(0, 100)),
+          (.CenterXCenterY, CGPoint(50, 100)),
+        ]
+        for (cPoint, cgPoint) in expectedPoints {
+            XCTAssertEqual(
+                srcRect.pointOfControlPoint(cPoint),
+                cgPoint
+            )
+        }
+    }
+}
+
 class SizesTests: XCTestCase {
 
     let rect = CGRect(x: 1, y: 2, width: 10, height: 20)
@@ -37,39 +86,26 @@ class SizesTests: XCTestCase {
 
     func testCenteringAtMinXMinY() {
         XCTAssertEqual(
-            rect.rectByAligning(CGSize(width: 5, height: 8), corner: .MinXEdge, .MinYEdge),
+            rect.rectByPinning(CGSize(width: 5, height: 8), controlPoints: .MinXMinY),
             CGRect(x: 1, y: 2, width: 5, height: 8))
     }
 
     func testCenteringAtMaxXMinY() {
         XCTAssertEqual(
-            rect.rectByAligning(CGSize(width: 5, height: 8), corner: .MaxXEdge, .MinYEdge),
+            rect.rectByPinning(CGSize(width: 5, height: 8), controlPoints: .MaxXMinY),
             CGRect(x: 6, y: 2, width: 5, height: 8))
     }
     
     func testCenteringAtMinXMaxY() {
         XCTAssertEqual(
-            rect.rectByAligning(CGSize(width: 5, height: 8), corner: .MinXEdge, .MaxYEdge),
+            rect.rectByPinning(CGSize(width: 5, height: 8), controlPoints: .MinXMaxY),
             CGRect(x: 1, y: 14, width: 5, height: 8))
     }
 
     func testCenteringAtMaxXMaxY() {
         XCTAssertEqual(
-            rect.rectByAligning(CGSize(width: 5, height: 8), corner: .MaxXEdge, .MaxYEdge),
+            rect.rectByPinning(CGSize(width: 5, height: 8), controlPoints: .MaxXMaxY),
             CGRect(x: 6, y: 14, width: 5, height: 8))
-    }
-    
-    func testCenteringPermutation() {
-        let combinations: [(CGRectEdge, CGRectEdge)] = [
-            (.MinXEdge, .MinYEdge), (.MaxXEdge, .MinYEdge),
-            (.MinXEdge, .MaxYEdge), (.MaxXEdge, .MaxYEdge)
-        ]
-        for (edge1, edge2) in combinations {
-            let size = CGSize(width: 5, height: 8)
-            XCTAssertEqual(
-                rect.rectByAligning(size, corner: edge1, edge2),
-                rect.rectByAligning(size, corner: edge2, edge1))
-        }
     }
 }
 
@@ -103,37 +139,23 @@ class MutatingSizesTests: XCTestCase {
     }
 
     func testCenteringAtMinXMinY() {
-        rect.setSizeAligned(CGSize(width: 5, height: 8), corner: .MinXEdge, .MinYEdge)
+        rect.setSizeWhilePinning(CGSize(width: 5, height: 8), controlPoints: .MinXMinY)
         XCTAssertEqual(rect, CGRect(x: 1, y: 2, width: 5, height: 8))
     }
 
     func testCenteringAtMaxXMinY() {
-        rect.setSizeAligned(CGSize(width: 5, height: 8), corner: .MaxXEdge, .MinYEdge)
+        rect.setSizeWhilePinning(CGSize(width: 5, height: 8), controlPoints: .MaxXMinY)
         XCTAssertEqual(rect, CGRect(x: 6, y: 2, width: 5, height: 8))
     }
 
     func testCenteringAtMinXMaxY() {
-        rect.setSizeAligned(CGSize(width: 5, height: 8), corner: .MinXEdge, .MaxYEdge)
+        rect.setSizeWhilePinning(CGSize(width: 5, height: 8), controlPoints: .MinXMaxY)
         XCTAssertEqual(rect, CGRect(x: 1, y: 14, width: 5, height: 8))
     }
 
     func testCenteringAtMaxXMaxY() {
-        rect.setSizeAligned(CGSize(width: 5, height: 8), corner: .MaxXEdge, .MaxYEdge)
+        rect.setSizeWhilePinning(CGSize(width: 5, height: 8), controlPoints: .MaxXMaxY)
         XCTAssertEqual(rect, CGRect(x: 6, y: 14, width: 5, height: 8))
     }
 
-    func testCenteringPermutation() {
-        let combinations: [(CGRectEdge, CGRectEdge)] = [
-            (.MinXEdge, .MinYEdge), (.MaxXEdge, .MinYEdge),
-            (.MinXEdge, .MaxYEdge), (.MaxXEdge, .MaxYEdge)
-        ]
-        let size = CGSize(width: 5, height: 8)
-        for (edge1, edge2) in combinations {
-            var rect1 = rect
-            var rect2 = rect
-            rect1.setSizeAligned(size, corner: edge1, edge2)
-            rect2.setSizeAligned(size, corner: edge2, edge1)
-            XCTAssertEqual(rect1, rect2)
-        }
-    }
 }
