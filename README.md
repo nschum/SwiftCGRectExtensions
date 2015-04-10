@@ -21,7 +21,17 @@ Features
 Integration
 -----------
 
-For now I suggest simply adding `CGRectExtensions.swift` to your project. (Once CocoaPods supports Swift, a spec will be available.)
+### CocoaPods ###
+
+Add the following to your Podfile:
+
+    pod 'CGRectExtensions'
+
+Then run `pod install` as usual and `import CGRectExtensions` in your Swift code.
+
+### Manual Installation ###
+
+If you don't use CocoaPods, copy the CGRectExtensions.swift file into your project.
 
 Examples
 --------
