@@ -21,21 +21,6 @@ Features
 - Respects the different coordinate systems on iOS and OS X
 - Unit tested
 
-Integration
------------
-
-### CocoaPods ###
-
-Add the following to your Podfile:
-
-    pod 'CGRectExtensions'
-
-Then run `pod install` as usual and `import CGRectExtensions` in your Swift code.
-
-### Manual Installation ###
-
-If you don't use CocoaPods, copy the CGRectExtensions.swift file into your project.
-
 Examples
 --------
 
@@ -91,3 +76,18 @@ view.frame.alignInPlace(CGSize(50, 50), corner: .MinXEdge, .MinYEdge)
 
 view.frame *= CGAffineTransformMakeScale(2.0, 3.0)
 ```
+
+Integration
+-----------
+
+### CocoaPods ###
+
+Add the following to your Podfile:
+
+    pod 'CGRectExtensions'
+
+### Carthage ###
+
+Add the following to your Cartfile:
+
+    github 'nschum/SwiftCGRectExtensions'
