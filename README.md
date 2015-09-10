@@ -7,6 +7,9 @@ The goal is to provide clear functions for the most commonly used rect operation
 
 Pull requests and suggestions are welcome.
 
+![Swift 2.0](https://img.shields.io/badge/Swift-2.0-lightgrey.svg) ![OS X ≥ 10.9](https://img.shields.io/badge/OS%20X-≥%2010.7-lightgrey.svg) ![iOS ≥ 7.0](https://img.shields.io/badge/iOS%20-≥%206.0-lightgrey.svg)
+![CocoaPods compatible](https://img.shields.io/cocoapods/v/FontAwesomeIconFactory.svg) [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
+
 Features
 --------
 
