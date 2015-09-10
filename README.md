@@ -91,3 +91,11 @@ Add the following to your Podfile:
 Add the following to your Cartfile:
 
     github 'nschum/SwiftCGRectExtensions'
+
+Changes
+-------
+
+### 2.0 ###
+
+- Updated for Swift 2
+- Functions renamed to match Swift 2 naming scheme for mutating methods.
