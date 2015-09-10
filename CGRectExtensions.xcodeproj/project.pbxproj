@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		24091C0F1BA1EFCF00980A3E /* DescriptionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24091C0E1BA1EFCF00980A3E /* DescriptionTests.swift */; settings = {ASSET_TAGS = (); }; };
+		24091C101BA1F02500980A3E /* DescriptionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24091C0E1BA1EFCF00980A3E /* DescriptionTests.swift */; settings = {ASSET_TAGS = (); }; };
 		242C641319D5C78A00D51D9F /* InsetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242C641219D5C78A00D51D9F /* InsetTests.swift */; };
 		242C641519D5CCAD00D51D9F /* ExtendTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242C641419D5CCAD00D51D9F /* ExtendTests.swift */; };
 		242C642019D5CF5100D51D9F /* CGRectExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 242C641F19D5CF5100D51D9F /* CGRectExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -48,6 +50,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		24091C0E1BA1EFCF00980A3E /* DescriptionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DescriptionTests.swift; sourceTree = "<group>"; };
 		242C641219D5C78A00D51D9F /* InsetTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InsetTests.swift; sourceTree = "<group>"; };
 		242C641419D5CCAD00D51D9F /* ExtendTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtendTests.swift; sourceTree = "<group>"; };
 		242C641B19D5CF5000D51D9F /* CGRectExtensions.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CGRectExtensions.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -169,6 +172,7 @@
 				247BBE4419D4C04E00A782E2 /* OperatorTests.swift */,
 				247BBE4219D4BBD900A782E2 /* SizesTests.swift */,
 				247BBE4019D4BA8A00A782E2 /* OffsetTests.swift */,
+				24091C0E1BA1EFCF00980A3E /* DescriptionTests.swift */,
 				247BBE0819D4A89F00A782E2 /* Supporting Files */,
 			);
 			path = CGRectExtensionsTests;
@@ -370,6 +374,7 @@
 				242C643519D5CFAC00D51D9F /* InsetTests.swift in Sources */,
 				242C643819D5CFAC00D51D9F /* OperatorTests.swift in Sources */,
 				242C643919D5CFAC00D51D9F /* SizesTests.swift in Sources */,
+				24091C0F1BA1EFCF00980A3E /* DescriptionTests.swift in Sources */,
 				242C643619D5CFAC00D51D9F /* ExtendTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -386,6 +391,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				24091C101BA1F02500980A3E /* DescriptionTests.swift in Sources */,
 				247BBE4319D4BBD900A782E2 /* SizesTests.swift in Sources */,
 				247BBE0B19D4A89F00A782E2 /* PropertyTests.swift in Sources */,
 				2484347719D8C65100F4228C /* ConstructorTests.swift in Sources */,

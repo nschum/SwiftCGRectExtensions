@@ -66,15 +66,15 @@ class PropertyGetterPlatformTests: PropertyGetterTests {
     }
 
     func testBottomLeft() {
-        XCTAssertEqual(rect.topLeft, CGPoint(x: 1, y: 22))
+        XCTAssertEqual(rect.bottomLeft, CGPoint(x: 1, y: 2))
     }
 
     func testBottomCenter() {
-        XCTAssertEqual(rect.topCenter, CGPoint(x: 6, y: 22))
+        XCTAssertEqual(rect.bottomCenter, CGPoint(x: 6, y: 2))
     }
 
     func testBottomRight() {
-        XCTAssertEqual(rect.topRight, CGPoint(x: 11, y: 22))
+        XCTAssertEqual(rect.bottomRight, CGPoint(x: 11, y: 2))
     }
 }
 #else
@@ -101,15 +101,15 @@ class PropertyGetterPlatformTests: PropertyGetterTests {
     }
 
     func testBottomLeft() {
-        XCTAssertEqual(rect.topLeft, CGPoint(x: 1, y: 2))
+        XCTAssertEqual(rect.bottomLeft, CGPoint(x: 1, y: 22))
     }
 
     func testBottomCenter() {
-        XCTAssertEqual(rect.topCenter, CGPoint(x: 6, y: 2))
+        XCTAssertEqual(rect.bottomCenter, CGPoint(x: 6, y: 22))
     }
 
     func testBottomRight() {
-        XCTAssertEqual(rect.topRight, CGPoint(x: 11, y: 2))
+        XCTAssertEqual(rect.bottomRight, CGPoint(x: 11, y: 22))
     }
 }
 #endif
