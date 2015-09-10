@@ -30,11 +30,11 @@ extension CGPoint {
     }
 
     /// Returns a copy with the x value changed.
-    public func with(# x: CGFloat) -> CGPoint {
+    public func with(x x: CGFloat) -> CGPoint {
         return CGPoint(x: x, y: y)
     }
     /// Returns a copy with the y value changed.
-    public func with(# y: CGFloat) -> CGPoint {
+    public func with(y y: CGFloat) -> CGPoint {
         return CGPoint(x: x, y: y)
     }
 }
@@ -50,11 +50,11 @@ extension CGSize {
     }
 
     /// Returns a copy with the width value changed.
-    public func with(# width: CGFloat) -> CGSize {
+    public func with(width width: CGFloat) -> CGSize {
         return CGSize(width: width, height: height)
     }
     /// Returns a copy with the height value changed.
-    public func with(# height: CGFloat) -> CGSize {
+    public func with(height height: CGFloat) -> CGSize {
         return CGSize(width: width, height: height)
     }
 }
@@ -189,107 +189,107 @@ extension CGRect {
     // MARK: with
 
     /// Returns a copy with the origin value changed.
-    public func with(# origin: CGPoint) -> CGRect {
+    public func with(origin origin: CGPoint) -> CGRect {
         return CGRect(origin: origin, size: size)
     }
     /// Returns a copy with the x and y values changed.
-    public func with(# x: CGFloat, y: CGFloat) -> CGRect {
+    public func with(x x: CGFloat, y: CGFloat) -> CGRect {
         return with(origin: CGPoint(x: x, y: y))
     }
     /// Returns a copy with the x value changed.
-    public func with(# x: CGFloat) -> CGRect {
+    public func with(x x: CGFloat) -> CGRect {
         return with(x: x, y: y)
     }
     /// Returns a copy with the y value changed.
-    public func with(# y: CGFloat) -> CGRect {
+    public func with(y y: CGFloat) -> CGRect {
         return with(x: x, y: y)
     }
 
     /// Returns a copy with the size value changed.
-    public func with(# size: CGSize) -> CGRect {
+    public func with(size size: CGSize) -> CGRect {
         return CGRect(origin: origin, size: size)
     }
     /// Returns a copy with the width and height values changed.
-    public func with(# width: CGFloat, height: CGFloat) -> CGRect {
+    public func with(width width: CGFloat, height: CGFloat) -> CGRect {
         return with(size: CGSize(width: width, height: height))
     }
     /// Returns a copy with the width value changed.
-    public func with(# width: CGFloat) -> CGRect {
+    public func with(width width: CGFloat) -> CGRect {
         return with(width: width, height: height)
     }
     /// Returns a copy with the height value changed.
-    public func with(# height: CGFloat) -> CGRect {
+    public func with(height height: CGFloat) -> CGRect {
         return with(width: width, height: height)
     }
 
     /// Returns a copy with the x and width values changed.
-    public func with(# x: CGFloat, width: CGFloat) -> CGRect {
+    public func with(x x: CGFloat, width: CGFloat) -> CGRect {
         return CGRect(origin: CGPoint(x: x, y: y), size: CGSize(width: width, height: height))
     }
     /// Returns a copy with the y and height values changed.
-    public func with(# y: CGFloat, height: CGFloat) -> CGRect {
+    public func with(y y: CGFloat, height: CGFloat) -> CGRect {
         return CGRect(origin: CGPoint(x: x, y: y), size: CGSize(width: width, height: height))
     }
 
     // MARK: offset
 
     /// Returns a copy with the x and y values offset.
-    public func rectByOffsetting(dx: CGFloat, _ dy: CGFloat) -> CGRect {
+    public func offsetBy(dx: CGFloat, _ dy: CGFloat) -> CGRect {
         return with(x: x + dx, y: y + dy)
     }
     /// Returns a copy with the x value values offset.
-    public func rectByOffsetting(# dx: CGFloat) -> CGRect {
+    public func offsetBy(dx dx: CGFloat) -> CGRect {
         return with(x: x + dx)
     }
     /// Returns a copy with the y value values offset.
-    public func rectByOffsetting(# dy: CGFloat) -> CGRect {
+    public func offsetBy(dy dy: CGFloat) -> CGRect {
         return with(y: y + dy)
     }
     /// Returns a copy with the x and y values offset.
-    public func rectByOffsetting(by: CGSize) -> CGRect {
+    public func offsetBy(by: CGSize) -> CGRect {
         return with(x: x + by.width, y: y + by.height)
     }
 
     /// Modifies the x and y values by offsetting.
-    public mutating func offset(dx: CGFloat, _ dy: CGFloat) {
-        offset(dx: dx, dy: dy)
+    public mutating func offsetInPlace(dx: CGFloat, _ dy: CGFloat) {
+        offsetInPlace(dx: dx, dy: dy)
     }
     /// Modifies the x value values by offsetting.
-    public mutating func offset(dx: CGFloat = 0) {
+    public mutating func offsetInPlace(dx dx: CGFloat = 0) {
         x += dx
     }
     /// Modifies the y value values by offsetting.
-    public mutating func offset(dy: CGFloat = 0) {
+    public mutating func offsetInPlace(dy dy: CGFloat = 0) {
         y += dy
     }
     /// Modifies the x and y values by offsetting.
-    public mutating func offset(by: CGSize) {
-        offset(dx: by.width, dy: by.height)
+    public mutating func offsetInPlace(by: CGSize) {
+        offsetInPlace(dx: by.width, dy: by.height)
     }
 
     // MARK: inset
 
     /// Returns a copy inset on all edges by the same value.
-    public func rectByInsetting(by: CGFloat) -> CGRect {
-        return rectByInsetting(dx: by, dy: by)
+    public func insetBy(by: CGFloat) -> CGRect {
+        return insetBy(dx: by, dy: by)
     }
 
     /// Returns a copy inset on the left and right edges.
-    public func rectByInsetting(# dx: CGFloat) -> CGRect {
+    public func insetBy(dx dx: CGFloat) -> CGRect {
         return with(x: x + dx, width: width - dx * 2)
     }
     /// Returns a copy inset on the top and bottom edges.
-    public func rectByInsetting(# dy: CGFloat) -> CGRect {
+    public func insetBy(dy dy: CGFloat) -> CGRect {
         return with(y: y + dy, height: height - dy * 2)
     }
 
     /// Returns a copy inset on all edges by different values.
-    public func rectByInsetting(minX: CGFloat = 0, minY: CGFloat = 0, maxX: CGFloat = 0, maxY: CGFloat = 0) -> CGRect {
+    public func insetBy(minX minX: CGFloat = 0, minY: CGFloat = 0, maxX: CGFloat = 0, maxY: CGFloat = 0) -> CGRect {
         return CGRect(x: x + minX, y: y + minY, width: width - minX - maxX, height: height - minY - maxY)
     }
 
     /// Returns a copy inset on all edges by different values.
-    public func rectByInsetting(top: CGFloat = 0, left: CGFloat = 0, bottom: CGFloat = 0, right: CGFloat = 0) -> CGRect {
+    public func insetBy(top top: CGFloat = 0, left: CGFloat = 0, bottom: CGFloat = 0, right: CGFloat = 0) -> CGRect {
         #if os(iOS)
             return CGRect(x: x + left, y: y + top, width: width - right - left, height: height - top - bottom)
         #else
@@ -298,156 +298,156 @@ extension CGRect {
     }
 
     /// Returns a copy inset on the top and left edges.
-    public func rectByInsetting(# topLeft: CGSize) -> CGRect {
-        return rectByInsetting(top: topLeft.height, left: topLeft.width)
+    public func insetBy(topLeft topLeft: CGSize) -> CGRect {
+        return insetBy(top: topLeft.height, left: topLeft.width)
     }
     /// Returns a copy inset on the top and right edges.
-    public func rectByInsetting(# topRight: CGSize) -> CGRect {
-        return rectByInsetting(top: topRight.height, right: topRight.width)
+    public func insetBy(topRight topRight: CGSize) -> CGRect {
+        return insetBy(top: topRight.height, right: topRight.width)
     }
     /// Returns a copy inset on the bottom and left edges.
-    public func rectByInsetting(# bottomLeft: CGSize) -> CGRect {
-        return rectByInsetting(bottom: bottomLeft.height, left: bottomLeft.width)
+    public func insetBy(bottomLeft bottomLeft: CGSize) -> CGRect {
+        return insetBy(bottom: bottomLeft.height, left: bottomLeft.width)
     }
     /// Returns a copy inset on the bottom and right edges.
-    public func rectByInsetting(# bottomRight: CGSize) -> CGRect {
-        return rectByInsetting(bottom: bottomRight.height, right: bottomRight.width)
+    public func insetBy(bottomRight bottomRight: CGSize) -> CGRect {
+        return insetBy(bottom: bottomRight.height, right: bottomRight.width)
     }
 
     /// Modifies all values by insetting all edges by the same value.
-    public mutating func inset(by: CGFloat) {
-        inset(dx: by, dy: by)
+    public mutating func insetInPlace(by: CGFloat) {
+        insetInPlace(dx: by, dy: by)
     }
 
     /// Modifies all values by insetting on the left and right edges.
-    public mutating func inset(# dx: CGFloat) {
-        inset(dx: dx, dy: 0)
+    public mutating func insetInPlace(dx dx: CGFloat) {
+        insetInPlace(dx: dx, dy: 0)
     }
     /// Modifies all values by insetting on the top and bottom edges.
-    public mutating func inset(# dy: CGFloat) {
-        inset(dx: 0, dy: dy)
+    public mutating func insetInPlace(dy dy: CGFloat) {
+        insetInPlace(dx: 0, dy: dy)
     }
 
     /// Modifies all values by insetting all edges by different value.
-    public mutating func inset(minX: CGFloat = 0, minY: CGFloat = 0, maxX: CGFloat = 0, maxY: CGFloat = 0) {
-        self = rectByInsetting(minX: minX, minY: minY, maxX: maxX, maxY: maxY)
+    public mutating func insetInPlace(minX minX: CGFloat = 0, minY: CGFloat = 0, maxX: CGFloat = 0, maxY: CGFloat = 0) {
+        self = insetBy(minX: minX, minY: minY, maxX: maxX, maxY: maxY)
     }
 
     /// Modifies all values by insetting all edges by different value.
-    public mutating func inset(top: CGFloat = 0, left: CGFloat = 0, bottom: CGFloat = 0, right: CGFloat = 0) {
-        self = rectByInsetting(top: top, left: left, bottom: bottom, right: right)
+    public mutating func insetInPlace(top top: CGFloat = 0, left: CGFloat = 0, bottom: CGFloat = 0, right: CGFloat = 0) {
+        self = insetBy(top: top, left: left, bottom: bottom, right: right)
     }
 
     /// Modifies all values by insetting the top and left edges.
-    public mutating func inset(# topLeft: CGSize) {
-        self = rectByInsetting(topLeft: topLeft)
+    public mutating func insetInPlace(topLeft topLeft: CGSize) {
+        self = insetBy(topLeft: topLeft)
     }
     /// Modifies all values by insetting the top and right edges.
-    public mutating func inset(# topRight: CGSize) {
-        self = rectByInsetting(topRight: topRight)
+    public mutating func insetInPlace(topRight topRight: CGSize) {
+        self = insetBy(topRight: topRight)
     }
     /// Modifies all values by insetting the bottom and left edges.
-    public mutating func inset(# bottomLeft: CGSize) {
-        self = rectByInsetting(bottomLeft: bottomLeft)
+    public mutating func insetInPlace(bottomLeft bottomLeft: CGSize) {
+        self = insetBy(bottomLeft: bottomLeft)
     }
     /// Modifies all values by insetting the bottom and right edges.
-    public mutating func inset(# bottomRight: CGSize) {
-        self = rectByInsetting(bottomRight: bottomRight)
+    public mutating func insetInPlace(bottomRight bottomRight: CGSize) {
+        self = insetBy(bottomRight: bottomRight)
     }
 
     // MARK: extending
 
     /// Returns a copy extended on all edges by different values.
-    public func rectByExtending(#dx: CGFloat, dy: CGFloat = 0) -> CGRect {
-        return rectByInsetting(dx: -dx, dy: -dy)
+    public func extendBy(dx dx: CGFloat, dy: CGFloat = 0) -> CGRect {
+        return insetBy(dx: -dx, dy: -dy)
     }
     /// Returns a copy extended on the top and bottom edges.
-    public func rectByExtending(# dy: CGFloat) -> CGRect {
-        return rectByInsetting(dy: -dy)
+    public func extendBy(dy dy: CGFloat) -> CGRect {
+        return insetBy(dy: -dy)
     }
 
     /// Returns a copy extended on all edges by the same value.
-    public func rectByExtending(by: CGFloat) -> CGRect {
-        return rectByInsetting(dx: -by, dy: -by)
+    public func extendBy(by: CGFloat) -> CGRect {
+        return insetBy(dx: -by, dy: -by)
     }
 
     /// Returns a copy extended on all edges by different values.
-    public func rectByExtending(minX: CGFloat = 0, minY: CGFloat = 0, maxX: CGFloat = 0, maxY: CGFloat = 0) -> CGRect {
-        return rectByInsetting(minX: -minX, minY: -minY, maxX: -maxX, maxY: -maxY)
+    public func extendBy(minX minX: CGFloat = 0, minY: CGFloat = 0, maxX: CGFloat = 0, maxY: CGFloat = 0) -> CGRect {
+        return insetBy(minX: -minX, minY: -minY, maxX: -maxX, maxY: -maxY)
     }
     /// Returns a copy extended on all edges by different values.
-    public func rectByExtending(top: CGFloat = 0, left: CGFloat = 0, bottom: CGFloat = 0, right: CGFloat = 0) -> CGRect {
-        return rectByInsetting(top: -top, left: -left, bottom: -bottom, right: -right)
+    public func extendBy(top top: CGFloat = 0, left: CGFloat = 0, bottom: CGFloat = 0, right: CGFloat = 0) -> CGRect {
+        return insetBy(top: -top, left: -left, bottom: -bottom, right: -right)
     }
 
     /// Modifies all values by extending the top and left edges.
-    public func rectByExtending(# topLeft: CGSize) -> CGRect {
-        return rectByExtending(top: topLeft.height, left: topLeft.width)
+    public func extendBy(topLeft topLeft: CGSize) -> CGRect {
+        return extendBy(top: topLeft.height, left: topLeft.width)
     }
     /// Modifies all values by extending the top and right edges.
-    public func rectByExtending(# topRight: CGSize) -> CGRect {
-        return rectByInsetting(top: -topRight.height, right: -topRight.width)
+    public func extendBy(topRight topRight: CGSize) -> CGRect {
+        return insetBy(top: -topRight.height, right: -topRight.width)
     }
     /// Modifies all values by extending the bottom and left edges.
-    public func rectByExtending(# bottomLeft: CGSize) -> CGRect {
-        return rectByInsetting(bottom: -bottomLeft.height, left: -bottomLeft.width)
+    public func extendBy(bottomLeft bottomLeft: CGSize) -> CGRect {
+        return insetBy(bottom: -bottomLeft.height, left: -bottomLeft.width)
     }
     /// Modifies all values by extending the bottom and right edges.
-    public func rectByExtending(# bottomRight: CGSize) -> CGRect {
-        return rectByInsetting(bottom: -bottomRight.height, right: -bottomRight.width)
+    public func extendBy(bottomRight bottomRight: CGSize) -> CGRect {
+        return insetBy(bottom: -bottomRight.height, right: -bottomRight.width)
     }
 
     /// Modifies all values by extending all edges by different values.
-    public mutating func extend(#dx: CGFloat, dy: CGFloat = 0) {
-        self = rectByInsetting(dx: -dx, dy: -dy)
+    public mutating func extendInPlace(dx dx: CGFloat, dy: CGFloat = 0) {
+        self = insetBy(dx: -dx, dy: -dy)
     }
     /// Modifies all values by extending the top and bottom edges.
-    public mutating func extend(# dy: CGFloat) {
-        self = rectByInsetting(dy: -dy)
+    public mutating func extendInPlace(dy dy: CGFloat) {
+        self = insetBy(dy: -dy)
     }
 
     /// Modifies all values by extending all edges by the same value.
-    public mutating func extend(by: CGFloat) {
-        self = rectByInsetting(dx: -by, dy: -by)
+    public mutating func extendInPlace(by: CGFloat) {
+        self = insetBy(dx: -by, dy: -by)
     }
 
     /// Modifies all values by extending all edges by different values.
-    public mutating func extend(minX: CGFloat = 0, minY: CGFloat = 0, maxX: CGFloat = 0, maxY: CGFloat = 0) {
-        self = rectByInsetting(minX: -minX, minY: -minY, maxX: -maxX, maxY: -maxY)
+    public mutating func extendInPlace(minX minX: CGFloat = 0, minY: CGFloat = 0, maxX: CGFloat = 0, maxY: CGFloat = 0) {
+        self = insetBy(minX: -minX, minY: -minY, maxX: -maxX, maxY: -maxY)
     }
     /// Modifies all values by extending all edges by different values.
-    public mutating func extend(top: CGFloat = 0, left: CGFloat = 0, bottom: CGFloat = 0, right: CGFloat = 0) {
-        self = rectByInsetting(top: -top, left: -left, bottom: -bottom, right: -right)
+    public mutating func extendInPlace(top top: CGFloat = 0, left: CGFloat = 0, bottom: CGFloat = 0, right: CGFloat = 0) {
+        self = insetBy(top: -top, left: -left, bottom: -bottom, right: -right)
     }
 
     /// Modifies all values by extending the top and left edges.
-    public mutating func extend(# topLeft: CGSize) {
-        self = rectByExtending(top: topLeft.height, left: topLeft.width)
+    public mutating func extendInPlace(topLeft topLeft: CGSize) {
+        self = extendBy(top: topLeft.height, left: topLeft.width)
     }
     /// Modifies all values by extending the top and right edges.
-    public mutating func extend(# topRight: CGSize) {
-        self = rectByInsetting(top: -topRight.height, right: -topRight.width)
+    public mutating func extendInPlace(topRight topRight: CGSize) {
+        self = insetBy(top: -topRight.height, right: -topRight.width)
     }
     /// Modifies all values by extending the bottom and left edges.
-    public mutating func extend(# bottomLeft: CGSize) {
-        self = rectByInsetting(bottom: -bottomLeft.height, left: -bottomLeft.width)
+    public mutating func extendInPlace(bottomLeft bottomLeft: CGSize) {
+        self = insetBy(bottom: -bottomLeft.height, left: -bottomLeft.width)
     }
     /// Modifies all values by extending the bottom and right edges.
-    public mutating func extend(# bottomRight: CGSize) {
-        self = rectByInsetting(bottom: -bottomRight.height, right: -bottomRight.width)
+    public mutating func extendInPlace(bottomRight bottomRight: CGSize) {
+        self = insetBy(bottom: -bottomRight.height, right: -bottomRight.width)
     }
 
     // MARK: sizes
 
     /// Returns a rect of the specified size centered in this rect.
-    public func rectByCentering(size: CGSize) -> CGRect {
+    public func center(size: CGSize) -> CGRect {
         let dx = width - size.width
         let dy = height - size.height
         return CGRect(x: x + dx * 0.5, y: y + dy * 0.5, width: size.width, height: size.height)
     }
 
     /// Returns a rect of the specified size centered in this rect touching the specified edge.
-    public func rectByCentering(size: CGSize, alignTo edge: CGRectEdge) -> CGRect {
+    public func center(size: CGSize, alignTo edge: CGRectEdge) -> CGRect {
         return CGRect(origin: alignedOrigin(size, edge: edge), size: size)
     }
 
@@ -467,7 +467,7 @@ extension CGRect {
     }
 
     /// Returns a rect of the specified size centered in this rect touching the specified corner.
-    public func rectByAligning(size: CGSize, corner e1: CGRectEdge, _ e2: CGRectEdge) -> CGRect {
+    public func align(size: CGSize, corner e1: CGRectEdge, _ e2: CGRectEdge) -> CGRect {
         return CGRect(origin: alignedOrigin(size, corner: e1, e2), size: size)
     }
 
@@ -489,18 +489,18 @@ extension CGRect {
     }
 
     /// Modifies all values by setting the size while centering the rect.
-    public mutating func setSizeCentered(size: CGSize) {
-        self = rectByCentering(size)
+    public mutating func centerInPlace(size: CGSize) {
+        self = center(size)
     }
 
     /// Modifies all values by setting the size while centering the rect touching the specified edge.
-    public mutating func setSizeCentered(size: CGSize, alignTo edge: CGRectEdge) {
-        self = rectByCentering(size, alignTo: edge)
+    public mutating func centerInPlace(size: CGSize, alignTo edge: CGRectEdge) {
+        self = center(size, alignTo: edge)
     }
 
     /// Modifies all values by setting the size while centering the rect touching the specified corner.
-    public mutating func setSizeAligned(size: CGSize, corner e1: CGRectEdge, _ e2: CGRectEdge) {
-        self = rectByAligning(size, corner: e1, e2)
+    public mutating func alignInPlace(size: CGSize, corner e1: CGRectEdge, _ e2: CGRectEdge) {
+        self = align(size, corner: e1, e2)
     }
 }
 
@@ -513,7 +513,7 @@ public func ==(t1: CGAffineTransform, t2: CGAffineTransform) -> Bool {
     return CGAffineTransformEqualToTransform(t1, t2)
 }
 
-extension CGAffineTransform: DebugPrintable {
+extension CGAffineTransform: CustomDebugStringConvertible {
     public var debugDescription: String {
         return "(\(a),\(b),\(c),\(d),\(tx),\(ty))"
     }
