@@ -115,19 +115,10 @@ extension CGRect {
         get {return x + width}
         set {x = newValue - width}
     }
+}
 
-    #if os(iOS)
-    /// Alias for origin.y.
-    public var top: CGFloat {
-        get {return y}
-        set {y = newValue}
-    }
-    /// Accesses origin.y + size.height.
-    public var bottom: CGFloat {
-        get {return y + height}
-        set {y = newValue - height}
-    }
-    #else
+#if os(OSX)
+extension CGRect {
     /// Accesses origin.y + size.height.
     public var top: CGFloat {
         get {return y + height}
@@ -138,8 +129,23 @@ extension CGRect {
         get {return y}
         set {y = newValue}
     }
-    #endif
+}
+#else
+extension CGRect {
+    /// Alias for origin.y.
+    public var top: CGFloat {
+        get {return y}
+        set {y = newValue}
+    }
+    /// Accesses origin.y + size.height.
+    public var bottom: CGFloat {
+        get {return y + height}
+        set {y = newValue - height}
+    }
+}
+#endif
 
+extension CGRect {
     // MARK: points
 
     /// Accesses the point at the top left corner.
@@ -294,10 +300,10 @@ extension CGRect {
 
     /// Returns a copy inset on all edges by different values.
     public func insetBy(top top: CGFloat = 0, left: CGFloat = 0, bottom: CGFloat = 0, right: CGFloat = 0) -> CGRect {
-        #if os(iOS)
-            return CGRect(x: x + left, y: y + top, width: width - right - left, height: height - top - bottom)
-        #else
+        #if os(OSX)
             return CGRect(x: x + left, y: y + bottom, width: width - right - left, height: height - top - bottom)
+        #else
+            return CGRect(x: x + left, y: y + top, width: width - right - left, height: height - top - bottom)
         #endif
     }
 
