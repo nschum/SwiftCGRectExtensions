@@ -511,11 +511,7 @@ extension CGRect {
 
 // MARK: transform
 
-extension CGAffineTransform: Equatable {
-}
-
-public func ==(t1: CGAffineTransform, t2: CGAffineTransform) -> Bool {
-    return CGAffineTransformEqualToTransform(t1, t2)
+extension CGAffineTransform {
 }
 
 extension CGAffineTransform: CustomDebugStringConvertible {
