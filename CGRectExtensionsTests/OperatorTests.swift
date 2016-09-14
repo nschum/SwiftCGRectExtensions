@@ -220,15 +220,15 @@ class RectOperatorTests: XCTestCase {
 
 class TransformOperatorTests: XCTestCase {
 
-    let transform = CGAffineTransformMakeScale(2, 3)
+    let transform = CGAffineTransform(scaleX: 2, y: 3)
 
     func testEquatable() {
-        let otherTransform = CGAffineTransformMakeScale(2, 3)
+        let otherTransform = CGAffineTransform(scaleX: 2, y: 3)
         XCTAssertTrue(transform == otherTransform)
     }
 
     func testNotEquatable() {
-        let otherTransform = CGAffineTransformMakeScale(3, 2)
+        let otherTransform = CGAffineTransform(scaleX: 3, y: 2)
         XCTAssertFalse(transform == otherTransform)
     }
 
@@ -266,17 +266,17 @@ class TransformOperatorTests: XCTestCase {
     }
 
     func testMultiplyTransform() {
-        let otherTransform = CGAffineTransformMakeTranslation(10, 20)
+        let otherTransform = CGAffineTransform(translationX: 10, y: 20)
         XCTAssertEqual(
             otherTransform * transform,
-            CGAffineTransformConcat(otherTransform, transform))
+            otherTransform.concatenating(transform))
     }
 
     func testMultiplyTransformAssignment() {
-        var otherTransform = CGAffineTransformMakeTranslation(10, 20)
+        var otherTransform = CGAffineTransform(translationX: 10, y: 20)
         otherTransform *= transform
         XCTAssertEqual(
             otherTransform,
-            CGAffineTransformConcat(CGAffineTransformMakeTranslation(10, 20), transform))
+            CGAffineTransform(translationX: 10, y: 20).concatenating(transform))
     }
 }
