@@ -252,7 +252,7 @@ extension CGRect {
 
     /// Modifies the x and y values by offsetting.
     public mutating func offsetInPlace(_ dx: CGFloat, _ dy: CGFloat) {
-        offsetInPlace(dx, dy)
+        self = self.offsetBy(dx: dx, dy: dy)
     }
     /// Modifies the x value values by offsetting.
     public mutating func offsetInPlace(dx: CGFloat = 0) {
@@ -314,6 +314,11 @@ extension CGRect {
         return insetBy(bottom: bottomRight.height, right: bottomRight.width)
     }
 
+    /// Modifies all values by insetting all edges (left & right by dx, top & bottom by dy)
+    public mutating func insetInPlace(dx: CGFloat, dy: CGFloat) {
+        self = self.insetBy(dx: dx, dy: dy)
+    }
+    
     /// Modifies all values by insetting all edges by the same value.
     public mutating func insetInPlace(_ by: CGFloat) {
         insetInPlace(dx: by, dy: by)
