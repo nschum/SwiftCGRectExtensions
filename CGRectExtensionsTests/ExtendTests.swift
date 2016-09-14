@@ -48,7 +48,7 @@ class ExtendTests: XCTestCase {
 
     func testExtendingMaxXMinY() {
         XCTAssertEqual(
-            rect.extendBy(maxX: -5, minY: -10),
+            rect.extendBy(minY: -10, maxX: -5),
             CGRect(x: 1, y: 12, width: 15, height: 30))
     }
 
@@ -98,7 +98,7 @@ class ExtendPlatformTests: ExtendTests {
 
     func testExtendingBottomLeft() {
         XCTAssertEqual(
-            rect.extendBy(bottom: -10, left: -5),
+            rect.extendBy(left: -5, bottom: -10),
             CGRect(x: 6, y: 12, width: 15, height: 30))
     }
 
@@ -159,7 +159,7 @@ class ExtendPlatformTests: ExtendTests {
 
     func testExtendingBottomLeft() {
         XCTAssertEqual(
-            rect.extendBy(bottom: -10, left: -5),
+            rect.extendBy(left: -5, bottom: -10),
             CGRect(x: 6, y: 2, width: 15, height: 30))
     }
 
@@ -244,7 +244,7 @@ class MutatingExtendTests: XCTestCase {
     }
 
     func testExtendtingMaxXMinY() {
-        rect.extendInPlace(maxX: -5, minY: -10)
+        rect.extendInPlace(minY: -10, maxX: -5)
         XCTAssertEqual(rect, CGRect(x: 1, y: 12, width: 15, height: 30))
     }
 
@@ -293,7 +293,7 @@ class MutatingExtendPlatformTests: MutatingExtendTests {
     }
 
     func testExtendtingBottomLeft() {
-        rect.extendInPlace(bottom: -10, left: -5)
+        rect.extendInPlace(left: -5, bottom: -10)
         XCTAssertEqual(rect, CGRect(x: 6, y: 12, width: 15, height: 30))
     }
 
@@ -346,7 +346,7 @@ class MutatingExtendPlatformTests: MutatingExtendTests {
     }
 
     func testExtendtingBottomLeft() {
-        rect.extendInPlace(bottom: -10, left: -5)
+        rect.extendInPlace(left: -5, bottom: -10)
         XCTAssertEqual(rect, CGRect(x: 6, y: 2, width: 15, height: 30))
     }
 

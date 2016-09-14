@@ -307,7 +307,7 @@ extension CGRect {
     }
     /// Returns a copy inset on the bottom and left edges.
     public func insetBy(bottomLeft: CGSize) -> CGRect {
-        return insetBy(bottom: bottomLeft.height, left: bottomLeft.width)
+        return insetBy(left: bottomLeft.width, bottom: bottomLeft.height)
     }
     /// Returns a copy inset on the bottom and right edges.
     public func insetBy(bottomRight: CGSize) -> CGRect {
@@ -395,7 +395,7 @@ extension CGRect {
     }
     /// Modifies all values by extending the bottom and left edges.
     public func extendBy(bottomLeft: CGSize) -> CGRect {
-        return insetBy(bottom: -bottomLeft.height, left: -bottomLeft.width)
+        return insetBy(left: -bottomLeft.width, bottom: -bottomLeft.height)
     }
     /// Modifies all values by extending the bottom and right edges.
     public func extendBy(bottomRight: CGSize) -> CGRect {
@@ -435,7 +435,7 @@ extension CGRect {
     }
     /// Modifies all values by extending the bottom and left edges.
     public mutating func extendInPlace(bottomLeft: CGSize) {
-        self = insetBy(bottom: -bottomLeft.height, left: -bottomLeft.width)
+        self = insetBy(left: -bottomLeft.width, bottom: -bottomLeft.height)
     }
     /// Modifies all values by extending the bottom and right edges.
     public mutating func extendInPlace(bottomRight: CGSize) {
